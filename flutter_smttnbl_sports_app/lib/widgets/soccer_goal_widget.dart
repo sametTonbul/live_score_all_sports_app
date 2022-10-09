@@ -1,5 +1,3 @@
-// ignore_for_file: unnecessary_brace_in_string_interps
-
 import 'package:flutter/material.dart';
 
 Widget goalStatus(int expandedTime, int homeGoal, int awayGoal) {
@@ -17,7 +15,7 @@ Widget goalStatus(int expandedTime, int homeGoal, int awayGoal) {
         Expanded(
           child: Center(
             child: Text(
-              '${homeGoal} - ${awayGoal}',
+              '$homeGoal - $awayGoal',
               textAlign: TextAlign.center,
               style: const TextStyle(
                 fontSize: 36,

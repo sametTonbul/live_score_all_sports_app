@@ -3,14 +3,16 @@ class SoccerMatch {
   Team home;
   Team away;
   Goal goal;
+
   SoccerMatch(this.fixture, this.home, this.away, this.goal);
 
   factory SoccerMatch.fromJson(Map<String, dynamic> json) {
     return SoccerMatch(
-        Fixture.fromJson(json['fixture']),
-        Team.fromJson(json['teams']['home']),
-        Team.fromJson(json['teams']['away']),
-        Goal.fromJson(json['goals']));
+      Fixture.fromJson(json['fixture']),
+      Team.fromJson(json['teams']['home']),
+      Team.fromJson(json['teams']['away']),
+      Goal.fromJson(json['goals']),
+    );
   }
 }
 
@@ -46,15 +48,18 @@ class Team {
   int id;
   String name;
   String logoUrl;
-  
-  Team(this.id, this.name, this.logoUrl, );
+
+  Team(
+    this.id,
+    this.name,
+    this.logoUrl,
+  );
 
   factory Team.fromJson(Map<String, dynamic> json) {
     return Team(
       json['id'],
       json['name'],
       json['logo'],
-      
     );
   }
 }

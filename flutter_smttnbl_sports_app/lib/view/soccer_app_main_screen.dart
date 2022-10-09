@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_smttnbl_sports_app/core/api_service.dart';
+import 'package:flutter_smttnbl_sports_app/models/soccer_models.dart';
+import 'package:flutter_smttnbl_sports_app/view/soccer_app_favourite_screen.dart';
 import 'package:flutter_smttnbl_sports_app/view/soccer_app_fixture_screen.dart';
 import 'package:flutter_smttnbl_sports_app/view/soccer_app_live_score_screen.dart';
-import 'package:flutter_smttnbl_sports_app/view/soccer_app_profile_screen.dart';
+import 'package:flutter_smttnbl_sports_app/widgets/soccer_page_widget.dart';
 
 class SoccerAppMainScreen extends StatefulWidget {
   const SoccerAppMainScreen({super.key});
@@ -13,15 +16,26 @@ class SoccerAppMainScreen extends StatefulWidget {
 class _SoccerAppHomeState extends State<SoccerAppMainScreen> {
   int _selectedIndex = 0;
   List<Widget> _widgetOptions = <Widget>[
-    const SoccerAppLiveScore2Screen(),
+    const SoccerAppLiveScoreScreen(),
     const SoccerAppFixtureScreen(),
-    const SoccerAppProfileScreen(),
+    const SoccerAppFavouriteScreen(),
   ];
 
   void _onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
     });
+  }
+
+  List<SoccerMatch>? matches;
+  @override
+  void initState() {
+    super.initState();
+    getData();
+  }
+
+  Future getData() async {
+    matches = await SoccerApi().getAllMatches();
   }
 
   @override
@@ -32,16 +46,22 @@ class _SoccerAppHomeState extends State<SoccerAppMainScreen> {
         backgroundColor: const Color(0xFFFAFAFA),
         items: const [
           BottomNavigationBarItem(
+            backgroundColor: Colors.redAccent,
+            activeIcon: Icon(Icons.local_fire_department_sharp),
             icon: Icon(Icons.local_fire_department),
-            label: 'Live Score',
+            label: 'LiVE SCORE',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.calendar_today),
-            label: 'Fixtures',
+            backgroundColor: Colors.blueGrey,
+            activeIcon: Icon(Icons.location_city_outlined),
+            icon: Icon(Icons.leak_remove),
+            label: 'LEAGUES',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.person),
-            label: 'Profile',
+            backgroundColor: Colors.brown,
+            activeIcon: Icon(Icons.favorite_outlined),
+            icon: Icon(Icons.favorite_outline_sharp),
+            label: 'FAVOURITES',
           ),
         ],
         currentIndex: _selectedIndex,
