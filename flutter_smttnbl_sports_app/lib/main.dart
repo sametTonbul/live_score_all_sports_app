@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_smttnbl_sports_app/view/soccer_app_live_score.dart';
+import 'package:flutter_smttnbl_sports_app/view/soccer_app_live_score_screen.dart';
 import 'package:flutter_smttnbl_sports_app/view/soccer_app_main_screen.dart';
 
 void main() {
@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const SoccerAppLiveScoreScreen(),
+      home: const SoccerAppMainScreen(),
     );
   }
 }
